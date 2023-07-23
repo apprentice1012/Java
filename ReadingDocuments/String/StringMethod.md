@@ -12,3 +12,6 @@ String的常用方法，用法示例见Demo/StringDemo
 4)indexOf(String str, int fromIndex)
 Tips:
 在源码中1),3)通过调用2),4)来实现判断操作，其中参数fromIndex默认为0
+
+3.lastIndexof()
+作用:在原字符串中查找目标字符串最后一次出现的位置，存在返回位置，不存在则返回-1
