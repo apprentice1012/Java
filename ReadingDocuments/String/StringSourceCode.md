@@ -34,7 +34,6 @@ String源码中IndexOf()方法主要使用的有四种，详情可见StringMetho
 
 static int indexOf(char[] source, int sourceOffset, int sourceCount, char[] target, int targetOffset, int targetCount, int fromIndex) { 
    
-    /*IndexDemo中有示例*/
     
     if (fromIndex >= sourceCount) {
         return (targetCount == 0 ? sourceCount : -1);
@@ -71,6 +70,7 @@ static int indexOf(char[] source, int sourceOffset, int sourceCount, char[] targ
     }
     return -1;
 }
+
 **参数说明:**
 
 char[] source源字符串转化成char数组，int sourceOffset源字符串的偏移量(源码中写死为0)，int sourceCount源字符串的长度
