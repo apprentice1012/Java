@@ -144,7 +144,7 @@ private int lastIndexOfSupplementary(int ch, int fromIndex) {
 
 其中"startSearchForLastChar:"是一个外层标签，外部标签通常在嵌套循环中使用，提供一个跳转目标，当内层循环使用break或者continue的时候可以跳转到标签处进行相应的处理。但是不建议大量使用，避免后续代码难以维护
 
-rightIndex右侧索引作用是避免*/
+rightIndex右侧索引作用是避免fromIndex越界从而出现数组越界错误*/
 
     static int lastIndexOf(char[] source, int sourceOffset, int sourceCount,
             char[] target, int targetOffset, int targetCount,
@@ -192,3 +192,11 @@ rightIndex右侧索引作用是避免*/
             return start - sourceOffset + 1;
         }
     }
+
+**参数说明:**
+
+char[] source源字符串转化成char数组，int sourceOffset源字符串的偏移量(源码中写死为0)，int sourceCount源字符串的长度
+
+char[] target目标字符串转化成char数组，int targetOffset目标字符串的偏移量(源码中写死为0)，int targetCount目标字符串的长度
+
+int fromIndex开始搜索源字符串的位置
