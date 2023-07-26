@@ -200,3 +200,5 @@ char[] source源字符串转化成char数组，int sourceOffset源字符串的�
 char[] target目标字符串转化成char数组，int targetOffset目标字符串的偏移量(源码中写死为0)，int targetCount目标字符串的长度
 
 int fromIndex开始搜索源字符串的位置
+
+length isEmpty charAt codePointAt
