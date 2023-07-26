@@ -114,12 +114,16 @@ lastIndexOf关键源码大致有三个部分(根据参数来分的):分别是int
 
 /*第二段对应int ch有效*/
 
-/*其中Character.isValidCodePoint(ch)是确定指定的代码点ch是否是有效的Unicode代码点值。
-这段代码是在给定的字符串中从指定的索引位置开始反向查找补充平面字符的最后一次出现的位置。它是 lastIndexOf 方法中调用的一个辅助方法。
-方法接受两个参数，一个是要查找的补充平面字符的代码点，另一个是开始查找的索引位置。首先，它会检查给定的代码点是否是有效的代码点。然后，它会将代码点拆分为高代理项和低代理项，分别存储在变量 hi 和 lo 中。
-接下来，它会获取字符串的字符数组 value，并根据给定的起始索引和字符数组长度计算出循环的起始位置。然后，从循环起始位置开始向前遍历字符数组，判断每个字符是否与高代理项和低代理项相匹配。如果找到了匹配的字符序列，则返回它在字符串中的索引位置。如果给定的代码点不是有效的代码点，或者未找到匹配的字符序列，则返回-1。这段代码实现了在字符串中反向查找补充平面字符的功能，以支持 Unicode 编码中的补充平面字符。*/
+/*这段代码是lastIndexOf方法中调用的一个辅助方法。
+
+方法接受两个参数，一个是要查找的补充平面字符的代码点，另一个是开始查找的索引位置。首先，它会检查给定的代码点是否是有效的代码点(Character.isValidCodePoint(ch)).然后,它会将代码点拆分为高代理项和低代理项,分别存储在变量hi和lo中。
+
+接下来，它会获取字符串的字符数组value，并根据给定的起始索引和字符数组长度计算出循环的起始位置.然后，从循环起始位置开始向前遍历字符数组，判断每个字符是否与高代理项和低代理项相匹配。如果找到了匹配的字符序列，则返回它在字符串中的索引位置。
+
+如果给定的代码点不是有效的代码点，或者未找到匹配的字符序列，则返回-1。这段代码实现了在字符串中反向查找补充平面字符的功能，以支持Unicode编码中的补充平面字符*/
 
 private int lastIndexOfSupplementary(int ch, int fromIndex) {
+
         if (Character.isValidCodePoint(ch)) {
             final char[] value = this.value;
             char hi = Character.highSurrogate(ch);
@@ -134,7 +138,13 @@ private int lastIndexOfSupplementary(int ch, int fromIndex) {
         return -1;
     }
     
-/*第三段*/
+/*第三段对应入参String str*/
+
+/*大致流程是递归循环，先判断目标字符串在原字符串中的位置，之后通过变量定位源字串的之后的字符是否与目标字串之后的字符相同，如果不同则跳到外层标签重新开始循环，如果找不到则返回-1。
+
+其中"startSearchForLastChar:"是一个外层标签，外部标签通常在嵌套循环中使用，提供一个跳转目标，当内层循环使用break或者continue的时候可以跳转到标签处进行相应的处理。但是不建议大量使用，避免后续代码难以维护
+
+rightIndex右侧索引作用是避免*/
 
     static int lastIndexOf(char[] source, int sourceOffset, int sourceCount,
             char[] target, int targetOffset, int targetCount,
@@ -162,6 +172,7 @@ private int lastIndexOfSupplementary(int ch, int fromIndex) {
 
     startSearchForLastChar:
         while (true) {
+            /*查找第一个符合目标字符的位置*/
             while (i >= min && source[i] != strLastChar) {
                 i--;
             }
