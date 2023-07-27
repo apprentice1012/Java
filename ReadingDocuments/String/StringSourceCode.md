@@ -87,7 +87,7 @@ String源码中有四种带参形式详情见StringMethod
 
 lastIndexOf关键源码大致有三个部分(根据参数来分的):分别是int ch是一个无效点，int ch有效，字符串
 
-/*第一段对应int ch是一个无效点*/
+**/*第一段对应int ch是一个无效点*/**
 
 /*MIN_SUPPLEMENTARY_CODE_POINT是Java character类中的一个常量它代表了 Unicode 编码中的最小补充代码点。Unicode 是一种字符编码标准，其中包含了各种语言和符号的字符。Unicode 编码将每个字符都分配了一个唯一的代码点。
 
@@ -112,7 +112,7 @@ lastIndexOf关键源码大致有三个部分(根据参数来分的):分别是int
         }
     }
 
-/*第二段对应int ch有效*/
+**/*第二段对应int ch有效*/**
 
 /*这段代码是lastIndexOf方法中调用的一个辅助方法。
 
@@ -138,7 +138,7 @@ private int lastIndexOfSupplementary(int ch, int fromIndex) {
         return -1;
     }
     
-/*第三段对应入参String str*/
+**/*第三段对应入参String str*/**
 
 /*大致流程是递归循环，先判断目标字符串在原字符串中的位置，之后通过变量定位源字串的之后的字符是否与目标字串之后的字符相同，如果不同则跳到外层标签重新开始循环，如果找不到则返回-1。
 
@@ -201,4 +201,74 @@ char[] target目标字符串转化成char数组，int targetOffset目标字符�
 
 int fromIndex开始搜索源字符串的位置
 
-length isEmpty charAt codePointAt
+**4.length**
+
+String提供的计算源字符串长度的方法
+
+**关键源码**
+
+/*主要是先将原字符串转换成char类型的数组，然后通过调用基本类型数组的length方法来判断源字符串的长度*/
+
+private final char value[];
+
+    public int length() {
+        return value.length;
+    }
+
+**5.isEmpty**
+
+判断字符串是否为空的一个方法
+
+**关键源码**
+
+/*由于是boolean类型的所以返回true or false条件就是value.length==0*/
+
+    public boolean isEmpty() {
+        return value.length == 0;
+    }
+
+**6.charAt**
+
+查询源字符串中指定位置所对应的字符
+
+**关键源码**
+
+/*首先判断所给的查询位置是否有越界行为，如果有数组越界行为的话则抛出异常，然后由于数组的随机访问直接返回当前位置的值即可*/
+
+    public char charAt(int index) {
+        if ((index < 0) || (index >= value.length)) {
+            throw new StringIndexOutOfBoundsException(index);
+        }
+        return value[index];
+    }
+**参数说明**
+
+int index字符所在位置的索引
+
+**7.codePointAt**
+
+返回源字符串中所选位置字符的UniCode值，开发中用的较少，常用来查询某个字符的Unicode值
+
+**关键源码**
+
+/*首先判断所给的查询位置是否有越界行为，如果有数组越界行为的话则抛出异常，然后调用Character中的codePointAtImpl方法来实现*/
+
+    public int codePointAt(int index) {
+        if ((index < 0) || (index >= value.length)) {
+            throw new StringIndexOutOfBoundsException(index);
+        }
+        return Character.codePointAtImpl(value, index, value.length);
+    }
+
+    static int codePointAtImpl(char[] a, int index, int limit) {
+        char c1 = a[index];
+        if (isHighSurrogate(c1) && ++index < limit) {
+            char c2 = a[index];
+            if (isLowSurrogate(c2)) {
+                return toCodePoint(c1, c2);
+            }
+        }
+        return c1;
+    }
+
+
