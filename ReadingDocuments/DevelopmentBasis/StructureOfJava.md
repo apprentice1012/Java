@@ -34,7 +34,7 @@
 
 **基本类型**
 
-   Java的基本类型有8种。分别是int,short,long,byte,double,float,char,bollean，其中前四种是整形类型，五六是浮点型，char是字节型可以表示字符的Unicode值，最后一种是布尔类型。**谨记String不是基本类型**，(我在String源码分析中应该有解释)
+   Java的基本类型有8种。分别是int,short,long,byte,double,float,char,bollean，其中前四种是整形类型，五六是浮点型，char是字节型可以表示字符的Unicode值，最后一种是布尔类型。**谨记String不是基本类型而是引用类型**，(我在String源码分析中应该有解释)
 
 
   **整形byte，short，int，long**
@@ -42,10 +42,5 @@
    ![image](https://github.com/apprentice1012/Java/assets/126549223/b3ece07c-cacc-4f15-9555-ed7e411c138b)
 
    
-
-        
-
-    
-    
+  在开发中我们经常用到的整形都是int类型但是如果需要表示超过int范围的数字是就需要使用long类型。byte和short使用场景多用于节省内存而实用，因为Java不只支持pc端的软件，还支持智能设备这个时候就需要使用合适的整形来节省空间。
   
-    
