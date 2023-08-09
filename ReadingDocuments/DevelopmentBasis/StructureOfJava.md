@@ -139,3 +139,35 @@
 ## switch表达式
 
 &emsp;&emsp;需要在两个及以上做出选择的时候可以使用switch case表达式。
+
+```Java
+  String str = switch(code){
+    case xxx->"xxx";
+    case xxx->"xxx";
+    case xxx->"xxx";
+    case xxx->"xxx";
+    case xxx->"xxx";
+    default -> "xxx";
+  };
+```
+
+&emsp;&emsp;示例中都是单标签case，但是也可以为case添加多标签。</br>
+
+&emsp;&emsp;**注意**
+
+&emsp;&emsp;&emsp;&emsp;在使用整数或String类型的时候不可以省略掉default，因为无论如何都要输出一个值。在其他时候可以根据业务情况进行省略</br>
+
+## 位运算符
+
+&emsp;&emsp;使用的频率不高。有&('and'),|('or'),^('xor'),~('not'),>>('左移运算符'),<<('右移运算符'),>>>('与>>用符号位填充高位不同，左移会使用0来填充高位')</br>
+
+## 括号与运算符级别
+
+&emsp;&emsp;如图所示</br>
+
+![image](https://github.com/apprentice1012/Java/assets/126549223/4f8aee36-fec8-4270-8832-def4b9708c8e)
+![image](https://github.com/apprentice1012/Java/assets/126549223/f8c0bcfb-cad1-44de-927b-4966a8a7d5d6)
+
+
+# 5.字符串
+
