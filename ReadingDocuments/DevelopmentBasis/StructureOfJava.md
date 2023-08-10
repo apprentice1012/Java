@@ -198,3 +198,115 @@
     World
   """
 ```
+&emsp;&emsp;文本块适合包含其他语言编写的代码。</br>
+
+# 输入和输出
+
+## 读取输入
+
+&emsp;&emsp;要想读取控制台输入首先要构造一个与“标准输入流”System.in关联的Scanner对象</br>
+```java
+  Scanner in = new Scanner(System.in);
+```
+&emsp;&emsp;然后通过Scanner中的方法来进行读取。但是因为Scanner输入对所有人可见，所以Scanner类不适合输入密码。可以使用Console类来达到这个目的，但是并不方便。</br>
+
+```
+ Scanner常用API：
+  String nextLine();//读取下一行输入
+  String next()//读取输入的下一个单词
+  int nextInt()//读取并转换下一个表示整数的字符序列
+  double newtDouble()//读取并转换下一个表示浮点数的字符序列
+  boolean hasNext()//检测输入中是否还有其他单词
+```
+
+## 格式化输出
+
+&emsp;&emsp;printf()</br>
+
+## 文件输入与输出
+
+&emsp;&emsp;要想读取一个文件，需要构造一个Scanner对象，如下所示：
+```Java
+  Scanner in = new Scanner(Path.of("myfile.txt"),StandardCharsets.UTF-8);
+```
+如果文件包含反斜线符号，要在每个反斜线之前在添加一个额外的反斜线进行转义。</br>
+
+&emsp;&emsp;要想写入文件需要使用PrintWriter</br>
+
+# 控制流程
+
+&emsp;&emsp;与其他语言一样，Java同样拥有条件语句和循环语句来确定控制流程。Java中的控制流程与C或者C++类似，除了没有goto语句以外，Java还可以在break上添加标签。</br>
+
+## 块作用域
+
+&emsp;&emsp;每对大括号包起来的内容属于一个块结构，块结构是支持嵌套的，但是在嵌套块内不能存在同名变量.</br>
+
+## 条件语句
+
+&emsp;&emsp;条件语句有两种if和if/else。语法如下：
+```Java
+  if(condition){
+  }
+  if(condition){
+  }else{
+  }
+```
+&emsp;&emsp;通过块结构，可以在原来只能放一条语句的位置多放几条语句，所以如果{}内只有一条语句，这个{}是可以省略的，但是非常不建议省略。else语句是可选的总是和离的最近if组成if/else条件语句。当然也可以使用if/else if.../else组成语句，但是尽量不要超过5次不然公司的代码规约可能过不去。</br>
+
+**流程图**
+
+**if**
+
+![image](https://github.com/apprentice1012/Java/assets/126549223/c41a57b9-b1cc-4cae-bbe6-df4aab668540)
+
+**if/else**
+
+![image](https://github.com/apprentice1012/Java/assets/126549223/8827ba90-66e0-451b-b433-fba9320166d5)
+
+**if/else if/else**
+
+![image](https://github.com/apprentice1012/Java/assets/126549223/60aefea3-40ff-4e3c-81f5-129965119ba6)
+
+# 循环
+
+## while循环
+
+&emsp;&emsp;while循环会在条件为true是执行一个语句也可以是代码块。
+```Java
+  while(condition) statement
+```
+&emsp;&emsp;如果初始条件为false则不会执行while循环，但有些场景需要代码执行一次所以这个时候就应该使用do/while。
+```Java
+  do statement
+  while(condition);
+```
+**流程图**
+
+**while**
+
+![image](https://github.com/apprentice1012/Java/assets/126549223/5d8cb06b-888e-45e1-9101-e95fd40b84ff)
+
+**do/while**
+
+![image](https://github.com/apprentice1012/Java/assets/126549223/522ff9fc-eac6-4dd3-8286-b310bf0562ea)
+
+## 确定性循环
+
+&emsp;&emsp;foe循环也叫确定性循环(我也是刚知道)支持迭代的一种通用结构。</br>
+```Java
+for(int i = 1;i<=x;i++)
+statement
+```
+&emsp;&emsp;for语句第一部分通常是对计数器进行初始化；第二部分给出每次新一轮循环执行前要检测的循环条件；第三部分指定如何更新计数器。虽然Java没有规定但部分一定要放什么语句，但是默认对应同一计数器变量进行初始化，检测和更新。还有一种for循环也称为for each循环在数组中进行介绍。</br>
+
+## 多重选择：switch语句
+
+&emsp;&emsp;switch/case说起来其实有四种形式但是核心都是一样的，无非是有直通行为和无直通行为的区别，说简单点就是带不带break语句，因为有时候可能匹配的case不只一个，或者不存在default语句但是又没有匹配到相应的case坑会出现问题，在表现形式上有直通行为case后面是":",无直通是行为"->"。在switch语句中有一个关键字yield作用类似于break；但是不同的是yield后面要跟一个值作为当前case的值。</br>
+
+## 中断控制流程的语句
+
+&emsp;&emsp;有break，带标签的break，continue以及带标签的continue四种语句</br>
+
+&emsp;&emsp;在Java中虽然没有goto关键字，而且大量使用goto会导致代码混乱，但是偶尔使用goto跳出循环确是不错的选择，所以Java提供了带标签的break语句来实现goto。标签必须放在想跳出的最外层循环处并且紧跟一个冒号。</br>
+
+&emsp;&emsp;continue与break不同的是会跳过剩余语句来到循环首部，而不会直接跳出循环。当然continue也是可以带标签的。</br>
