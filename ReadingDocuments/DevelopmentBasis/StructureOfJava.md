@@ -310,3 +310,13 @@ statement
 &emsp;&emsp;在Java中虽然没有goto关键字，而且大量使用goto会导致代码混乱，但是偶尔使用goto跳出循环确是不错的选择，所以Java提供了带标签的break语句来实现goto。标签必须放在想跳出的最外层循环处并且紧跟一个冒号。</br>
 
 &emsp;&emsp;continue与break不同的是会跳过剩余语句来到循环首部，而不会直接跳出循环。当然continue也是可以带标签的。</br>
+
+# 6.大数
+
+&emsp;&emsp;在前文中说过在计算经济数据的时候使用整数或者浮点数可能会丢失精度，这个时候就可以使用java.math中的类：BigInteger或者BigDecimal。这两个类可以处理包含任意长度数字序列的数值。</br>
+
+&emsp;&emsp;通过类中方法valueof()可以将普通的数转换成大数。还可以使用带有一个字符串参数的构造器来实现(BigDemical基本上都要带上字符串参数构造器不过很容易造成舍入误差)</br>
+
+```Java
+BigInteger a = new BigInteget("9878978979878975643218743121");
+···
