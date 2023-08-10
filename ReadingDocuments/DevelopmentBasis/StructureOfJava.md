@@ -171,3 +171,30 @@
 
 # 5.字符串
 
+## 字符串不可变
+
+&emsp;&emsp;Java设计者认为共享的效率远远超过编辑的效率</br>
+
+## 空串和NULL
+
+&emsp;&emsp;空串是长度为0的字符串，而NULL只是一个特殊的值。</br>
+
+## 构建字符串
+
+&emsp;&emsp;有时候需要由短的字符串构建字符串。如果使用String来进行拼接会有效率问题产生，这时候我们可以使用StringBuilder调用append方法完成拼接。构建完成之后调用toString方法就可以获得一个String字符串。</br>
+
+&emsp;&emsp**注释**
+
+&emsp;&emsp;&emsp;&emsp;StringBuffer类的效率不如StringBuilder类，不过StringBuffer允许采用多线程的方式添加或删除字符。如果所有字符串编辑操作都在单线程中执行，则应当使用StringBuilder类。两个类的API一模一样</br>
+
+&emsp;&emsp;&emsp;&emsp;源码中StringBuffer效率低但是能满足多线程的原因是因为在重写方法的时候实现了synchronized，而StringBuilder并没有实现。</br>
+
+## 文本块
+
+&emsp;&emsp;在Java15中添加了文本块特性。可以很容易的提供跨越多行的字符串字面量，文本块以"""开头和结尾。</br>
+```Java
+  String str = """
+    Hello
+    World
+  """
+```
