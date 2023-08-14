@@ -5,7 +5,7 @@
 String源码中trim()方法只有无参类型
 
 **关键源码:**
-···Java
+```Java
 /*其中val[st] <= ' '和val[len - 1] <= ' '用于判断字符是否为空格或空字符。如果字符的Unicode值小于或等于空格字符的Unicode值，那么该字符就被认为是空格或空字符*/
 
 public String trim() {
@@ -23,7 +23,7 @@ public String trim() {
     }
     return ((st > 0) || (len < value.length)) ? substring(st, len) : this;
  }
-··· 
+```
 **2.indexOf**
 
 String源码中IndexOf()方法主要使用的有四种，详情可见StringMethod第二条
