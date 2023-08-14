@@ -1,31 +1,164 @@
-# 面向对象程序设计概述
+# 1.面向对象程序设计概述
 
-&emsp;&emsp;面向对象程序设计是当今主流程序设计范型。
+&emsp;&emsp;面向对象程序设计是当今主流程序设计范型。面向对象程序设计将设计重点放到了类上面。而面向过程是将重点放在了求解过程上。一个很古老的解释，将大象放到冰箱里。面向对象会创建两个对象，大象和冰箱，然后对冰箱实现打开和关闭的方法，对大象实现移动至冰箱的操作；而面向过程则是将过程分为三步第一步打开冰箱门第二部分将大象放入冰箱第三步关上冰箱门。如果出现问题，面向对象是定位对象查找问题，面向过程是定位过程这么对比肯定是面向对象会好一点，但是万物开端c语言就是面向过程的，所以说没必要一定说谁好谁坏，存在即合理。</br>
+
 ## 类
+
+&emsp;&emsp;类(class)制定了如何构造对象。由一个类(构造类)构造对象过程称为创建这个类的一个实例。</br>
+
+&emsp;&emsp;封装是处理对象的一个重要概念。从形式上来看封装是将数据和行为组合到一个包中，并对对象的使用者隐藏具体实现细节。对象中的数据成为实例字段(instance field)，操作数据的过程称为方法。实现封装的关键是绝对不能让其他类中的方法直接访问这个类饿的实例字段。程序只能通过对象的方法与对象数据进行交互。扩展一个已有的类时，这个新类具有被扩展那个类的全部属性和方法。</br>
 
 ## 对象
 
+&emsp;&emsp;对象的三个特征：</br>
+
+&emsp;&emsp;&emsp;&emsp;对象的行为————可以对这个对象做哪些操作，或者可以对这个对象做哪些操作？</br>
+
+&emsp;&emsp;&emsp;&emsp;对象的状态————调用哪些方法时，对象可能响应？</br>
+
+&emsp;&emsp;&emsp;&emsp;对象的标识————如何区分可能有相同行为和状态的不同对象？</br>
+
+&emsp;&emsp;同一个类的所有实例对象都有一种家族相似性，都支持相同的行为，一个对象的行为由所能调用的方法来定义；</br>
+
+&emsp;&emsp;每个对象都会保存着描述当前状况的信息，这就是对象的状态。对象状态的会随着调用方法进行改变，而不是随着时间自发改变的；</br>
+
+&emsp;&emsp;对象的状态并不能完全表示对象，因为每个独享都以一个唯一标识</br>
+
+
 ## 识别类
+
+&emsp;&emsp;在c语言中必须从最上面的main函数开始编写程序。而在面向对象中却没有最上面的概念，是从识别类开始，然后给各个类添加方法。</br>
 
 ## 类之间的关系
 
-# 使用预定义类
+&emsp;&emsp;类之间最常见的关系有：依赖，聚合，继承。</br>
+
+&emsp;&emsp;依赖：常说的A依赖与B，就是A需要通过B来完成某一项功能，如果一个类的方法要使用或操作另一个类的对象，就称为前一个类依赖后面那个类。不过在软件开发的时候应该尽量减少不必要的依赖，也就是减少耦合。</br>
+
+&emsp;&emsp;聚合：A对象包含一些B对象</br>
+
+&emsp;&emsp;继承：表示一个更特殊的类对一个较为普通的类进行扩展。如果B扩展了A，则B拥有A的全部方法，并且还有一些B中的独有方法。</br>
+
+# 2.使用预定义类
+
+&emsp;&emsp;在Java中没有类就没有办法做任何事。</br>
 
 ## 对象与对象变量
 
+&emsp;&emsp;要想使用对象，必须先构建对象，并将其初始化。在Java中要使用构造器(构造函数)构造新实例。构造器是一种特殊的方法，作用就是初始化对象。构造器一直是与类是同名的，要想构造一个新对象必须在构造器前面添加关键字new。如：</br>
+
+```Java
+    Date time = new Date();//new后面跟的Date()就是构造器
+```
+&emsp;&emsp;在示例中time是一个对象变量引用了Date这个对象，对象变量实际上不是一个变量只是引用一个对象。如果要让对象变量起作用首先要初始化。初始化可以使用构造器进行初始化，也可以让他引用一个已经存在的对象。</br>
+
+&emsp;&emsp;ps：在c语言和C++中有一个挺恶心的东西叫指针，可以把对象变量类比一下指针，更好理解。</br>
+
 ## Java类库中的LocalDate类
+
+&emsp;&emsp;标准Java库中包含了两个表示时间的类：1.表示时间点的Date类；2.用日历表示法表示日期的LocalDate类。</br>
+
+&emsp;&emsp;Date类没啥可说的照着用就行。LocalDate类不要使用构造器来构造对象，应该使用静态工厂方法，它会替你调用构造器。</br>
+
+```Java
+
+  LocalDate.now();
+
+```
 
 ## 更改器方法与访问器方法
 
-# 自定义类
+&emsp;&emsp;只访问对象而不修改对象的方法有时候称为访问器方法。更改器方法就是访问并改变对象的方法。</br>
+
+# 3.自定义类
 
 ## Employee类
 
+&emsp;&emsp;在Java中最简单的类定义形式如下：</br>
+
+```Java
+class ClassName{
+
+  field1;
+  field2;
+    .
+    .
+    .
+  constructer1;
+  constructer2;
+    .
+    .
+    .
+  method1;
+  method2;
+    .
+    .
+    .
+}
+```
+
+&emsp;&emsp;构建一个最简单的Employee类以方便后续文档编写：</br>
+
+```Java
+package Demo.StringDemo;
+
+import java.time.LocalDate;
+
+public class Employee {
+
+    //field 属性
+    private String name;
+    private String salary;
+    private LocalDate hireDay;
+
+    //constructor 构造器
+    //有参构造
+    public Employee(String name, String salary, LocalDate hireDay) {
+        this.name = name;
+        this.salary = salary;
+        this.hireDay = hireDay;
+    }
+    //无参构造
+    public Employee() {
+    }
+
+    //method 方法
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSalary() {
+        return salary;
+    }
+
+    public void setSalary(String salary) {
+        this.salary = salary;
+    }
+
+    public LocalDate getHireDay() {
+        return hireDay;
+    }
+
+    public void setHireDay(LocalDate hireDay) {
+        this.hireDay = hireDay;
+    }
+}
+```
+
 ## 使用多个源文件
 
-## 婆媳Employee类
+&emsp;&emsp;如果一个源文件中包含有多个类，如果类都放在同一个包下面可以通过通配符*来减少代码行数，不过不建议使用过不了代码审核。还有一种写法emmmmm更不建议使用，至今为止没见过有人用过javac xxxx.java如果遇到使用但是没有编译的类则会自动寻找并编译，但是如果真的没有就恶心了，所以不建议使用，</br>
+
+## 剖析Employee类
+
+&emsp;&emsp;在Employee泪立main有三个属性前面用private修饰，来保证这些属性只有Employee这个类使用，这个类中包含了三个属性两种构造函数，以及一些getset方法。</br>
 
 ## 从构造器开始
+
 
 ## 用var声明局部变量
 
